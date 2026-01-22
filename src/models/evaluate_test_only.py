@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-체크포인트에서 모델을 로드하여 테스트 평가만 실행하는 스크립트
+Script to load model from checkpoint and evaluate on test set only
 """
 
 import os
@@ -22,7 +22,7 @@ from src.models.task_classification_from_images_xai import (
 
 
 def load_checkpoint_info(checkpoint_path):
-    """체크포인트에서 모델 설정 정보 추출"""
+    """Extract model configuration information from checkpoint"""
     checkpoint = torch.load(checkpoint_path, map_location='cpu')
     
     # 모델 구조 정보
@@ -79,7 +79,7 @@ def create_test_dataset(
     crop_right=100,
     participants_file=None,
 ):
-    """테스트 데이터셋 생성"""
+    """Create test dataset"""
     print("\n테스트 데이터셋 생성 중...")
     
     # 폴더 리스트 로드
@@ -172,7 +172,7 @@ def evaluate_test(
     crop_right=100,
     participants_file=None,
 ):
-    """체크포인트에서 모델을 로드하여 테스트 평가"""
+    """Load model from checkpoint and evaluate on test set"""
     
     print("="*80)
     print("테스트 평가 시작")

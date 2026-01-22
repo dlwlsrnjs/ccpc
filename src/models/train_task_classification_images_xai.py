@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
-위상 행렬 이미지로 태스크 분류 모델 학습 스크립트 (XAI 지원)
+Training script for task classification model using connectivity matrix images (XAI Support)
 
-사용 예시:
-    # 기본 학습
+Usage examples:
+    # Basic training
     python train_task_classification_images_xai.py
 
-    # 학습 후 Grad-CAM 분석 실행
+    # Training with Grad-CAM analysis
     python train_task_classification_images_xai.py --run_xai
 
-    # ResNet50 사용
+    # Use ResNet50
     python train_task_classification_images_xai.py --backbone resnet50
 
-    # 특정 주파수 대역만 사용
+    # Use specific frequency band only
     python train_task_classification_images_xai.py --freq_band alpha
 """
 
@@ -21,7 +21,7 @@ from task_classification_from_images_xai import train_model
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='위상 행렬 이미지로 태스크 분류 모델 학습 (XAI 지원)')
+    parser = argparse.ArgumentParser(description='Train task classification model using connectivity matrix images (XAI Support)')
     
     parser.add_argument('--image_type', type=str, default='connectivity_matrix',
                        choices=['connectivity_matrix', 'connectivity_heatmap'],

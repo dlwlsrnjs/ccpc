@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-CSV 파일별로 connectivity 이미지를 생성하는 스크립트 (개선 버전)
-CNN 학습용 connectivity matrix 이미지 생성에 최적화
+Script to generate connectivity images from CSV files (Improved version)
+Optimized for CNN training connectivity matrix image generation
 
-주요 개선사항:
-- NaN 값 및 잘못된 freq_band 필터링
-- 에러 핸들링 강화
-- CNN 학습에 필요한 이미지만 생성 (불필요한 시각화 제거 옵션)
-- 메모리 효율성 개선
+Key improvements:
+- Filter NaN values and invalid freq_band
+- Enhanced error handling
+- Generate only images needed for CNN training (remove unnecessary visualizations)
+- Improved memory efficiency
 """
 
 import pandas as pd
@@ -38,12 +38,12 @@ VALID_FREQ_BANDS = ['delta', 'theta', 'alpha', 'low_beta', 'high_beta', 'gamma']
 
 def create_connectivity_matrix_from_df(df, freq_band=None, value_col='absCPCC'):
     """
-    데이터프레임에서 connectivity matrix 생성 (absCPCC 또는 imCPCC)
+    Create connectivity matrix from dataframe (absCPCC or imCPCC)
     
     Args:
-        df: connectivity 데이터프레임
-        freq_band: 주파수 대역 (None이면 전체)
-        value_col: 사용할 컬럼 ('absCPCC' or 'imCPCC')
+        df: connectivity dataframe
+        freq_band: frequency band (None for all)
+        value_col: column to use ('absCPCC' or 'imCPCC')
     
     Returns:
         numpy.ndarray: connectivity matrix (n_channels x n_channels)

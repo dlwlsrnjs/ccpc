@@ -1,11 +1,11 @@
 """
-위상 행렬 이미지를 입력으로 받아 태스크를 분류하는 CNN 모델 (XAI 지원)
+CNN Model for Task Classification using Connectivity Matrix Images (XAI Support)
 
-입력: connectivity matrix 이미지 (주파수 대역별, absCPCC/imCPCC별)
-출력: 태스크 분류
+Input: Connectivity matrix images (by frequency band, absCPCC/imCPCC)
+Output: Task classification
 
-Subject 독립적 학습 (train/val/test split을 subject 기준으로)
-XAI 지원: Grad-CAM, Feature Visualization 등
+Subject-independent learning (train/val/test split based on subjects)
+XAI Support: Grad-CAM, Feature Visualization, etc.
 """
 
 import os
@@ -108,8 +108,8 @@ except ImportError:
 
 class ConnectivityImageDataset(Dataset):
     """
-    위상 행렬 이미지를 로드하는 데이터셋
-    멀티뷰 학습 지원: 여러 주파수 대역 이미지를 채널로 결합
+    Dataset for loading connectivity matrix images
+    Supports multiview learning: combines multiple frequency band images as channels
     """
     
     def __init__(
@@ -316,10 +316,10 @@ class ConnectivityImageDataset(Dataset):
 
 class XAIClassificationModel(nn.Module):
     """
-    XAI를 지원하는 분류 모델
-    - Pre-trained ResNet 기반 (Grad-CAM에 적합)
-    - Feature map 접근 가능
-    - 멀티뷰 학습 지원 (여러 주파수 대역 이미지 입력)
+    Classification model with XAI support
+    - Based on pre-trained ResNet (suitable for Grad-CAM)
+    - Feature map access available
+    - Supports multiview learning (multiple frequency band images as input)
     """
     
     def __init__(
@@ -470,8 +470,8 @@ class XAIClassificationModel(nn.Module):
 
 class GradCAM:
     """
-    Grad-CAM (Gradient-weighted Class Activation Mapping) 구현
-    모델이 예측을 할 때 어떤 영역에 주목했는지 시각화
+    Grad-CAM (Gradient-weighted Class Activation Mapping) implementation
+    Visualizes which regions the model focuses on when making predictions
     """
     
     def __init__(self, model: nn.Module, target_layer: str = None):
